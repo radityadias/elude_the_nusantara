@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://bc0gadnauft4t"]
+[gd_scene load_steps=55 format=3 uid="uid://bc0gadnauft4t"]
 
 [ext_resource type="Texture2D" uid="uid://5y8ptx0donk3" path="res://assets/sprites/Player/Idel Animation 48x48/Idel Animation 48x48.png" id="1_xcisb"]
 [ext_resource type="Texture2D" uid="uid://dbpm4xmgs0f3d" path="res://assets/sprites/Player/Jump Animation 48x48/Jump Animation 48x48.png" id="2_socpp"]
@@ -338,7 +338,15 @@ animations = [{
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8y32k"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pvm3q"]
-radius = 9.0
+height = 42.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xcisb"]
+height = 42.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_socpp"]
+height = 40.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fxc31"]
 height = 40.0
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
@@ -349,9 +357,34 @@ scale = Vector2(0.958333, 0.9375)
 sprite_frames = SubResource("SpriteFrames_rt1cg")
 animation = &"Idle"
 autoplay = "Idle"
-frame_progress = 0.186041
+frame_progress = 0.316155
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="IdleCollision" type="CollisionShape2D" parent="."]
 material = SubResource("CanvasItemMaterial_8y32k")
-position = Vector2(0, -22)
+position = Vector2(1, -21)
 shape = SubResource("CapsuleShape2D_pvm3q")
+
+[node name="RunCollision" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -21)
+shape = SubResource("CapsuleShape2D_xcisb")
+disabled = true
+
+[node name="JumpCollision" type="CollisionShape2D" parent="."]
+visible = false
+material = SubResource("CanvasItemMaterial_8y32k")
+position = Vector2(1, -21)
+shape = SubResource("CapsuleShape2D_pvm3q")
+disabled = true
+
+[node name="PushCollision" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(8, -20)
+shape = SubResource("CapsuleShape2D_socpp")
+disabled = true
+
+[node name="PullCollision" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -20)
+shape = SubResource("CapsuleShape2D_fxc31")
+disabled = true
